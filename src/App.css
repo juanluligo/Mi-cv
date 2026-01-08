@@ -4,15 +4,23 @@ body {
   position: relative;
   overflow-x: hidden;
   width: 100%;
+  min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 #root {
   width: 100%;
-  max-width: none;
+  max-width: 100vw;
   margin: 0;
   padding: 0;
   text-align: left;
@@ -22,6 +30,7 @@ body {
 /* Estilos para las secciones */
 section {
   width: 100%;
+  max-width: 100vw;
   position: relative;
   overflow-x: hidden;
 }
@@ -34,6 +43,7 @@ section {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* ========== SECCIÓN INICIO ========== */
@@ -146,7 +156,7 @@ html {
 }
 
 .columna-derecha h1 {
-  font-size: 64px;
+  font-size: clamp(32px, 5vw, 64px);
   font-family: 'Permanent Marker', cursive;
   font-weight: 900;
   color: #d6ff6b;
@@ -194,7 +204,7 @@ html {
 }
 
 .splash-grafiti h1 {
-  font-size: 64px;
+  font-size: clamp(32px, 5vw, 64px);
   font-family: 'Permanent Marker', cursive;
   font-weight: 900;
   color: #d6ff6b;
@@ -271,7 +281,7 @@ html {
 }
 
 .izquierdo.me h1 {
-  font-size: 64px;
+  font-size: clamp(36px, 5vw, 64px);
   color: #4636d9;
   font-family: 'Permanent Marker', cursive;
   margin-bottom: 48px;
@@ -357,7 +367,7 @@ html {
 }
 
 .experiencia-container h2 {
-  font-size: 48px;
+  font-size: clamp(28px, 4vw, 48px);
   color: hsl(224, 80%, 57%);
   font-family: 'Permanent Marker', cursive;
   text-align: center;
@@ -508,7 +518,7 @@ html {
 
 .proyectos-container h2 {
   font-family: 'Permanent Marker', cursive;
-  font-size: 48px;
+  font-size: clamp(28px, 4vw, 48px);
   color: #d6ff6b;
   text-align: center;
   margin-bottom: 16px;
@@ -684,7 +694,7 @@ html {
 }
 
 .contacto-header h2 {
-  font-size: 56px;
+  font-size: clamp(32px, 4.5vw, 56px);
   color: #d6ff6b;
   font-family: 'Permanent Marker', cursive;
   margin-bottom: 20px;
