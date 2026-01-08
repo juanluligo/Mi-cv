@@ -3,6 +3,11 @@ body {
   padding: 0;
   position: relative;
   overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #root {
@@ -11,12 +16,14 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
+  overflow-x: hidden;
 }
 
 /* Estilos para las secciones */
 section {
   width: 100%;
   position: relative;
+  overflow-x: hidden;
 }
 
 #inicio {
@@ -297,6 +304,42 @@ html {
   box-shadow: 0 4px 16px rgba(70, 54, 217, 0.1);
 }
 
+/* Botón de descarga de CV en sección Me */
+.cv-download-button {
+  margin-top: 24px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #4636d9 0%, #6b5aff 100%);
+  color: #d6ff6b;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(70, 54, 217, 0.3);
+  align-self: center;
+}
+
+.cv-download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(70, 54, 217, 0.4);
+  background: linear-gradient(135deg, #5547e5 0%, #7b6aff 100%);
+}
+
+.cv-download-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(70, 54, 217, 0.3);
+}
+
+.cv-download-button i {
+  font-size: 20px;
+}
+
 /* ========== SECCIÓN EXPERIENCIA ========== */
 #experiencia {
   min-height: 100vh;
@@ -446,6 +489,166 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ========== SECCIÓN PROYECTOS ========== */
+#proyectos {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  padding: 80px 20px;
+  position: relative;
+}
+
+.proyectos-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.proyectos-container h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 48px;
+  color: #d6ff6b;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 3px 3px 0 #4636d9, 0 0 20px rgba(214, 255, 107, 0.3);
+}
+
+.proyectos-subtitle {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 60px;
+  opacity: 0.9;
+}
+
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  padding: 20px;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(214, 255, 107, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.project-card.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: #d6ff6b;
+  box-shadow: 0 20px 40px rgba(214, 255, 107, 0.2);
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4636d9 0%, #6b5aff 100%);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(70, 54, 217, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #d6ff6b;
+  color: #4636d9;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(214, 255, 107, 0.4);
+}
+
+.project-content {
+  padding: 30px;
+}
+
+.project-content h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 24px;
+  color: #d6ff6b;
+  margin-bottom: 12px;
+  text-shadow: 2px 2px 0 #4636d9;
+}
+
+.project-content p {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(214, 255, 107, 0.1);
+  color: #d6ff6b;
+  border: 1px solid rgba(214, 255, 107, 0.3);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background: rgba(214, 255, 107, 0.2);
+  border-color: #d6ff6b;
 }
 
 /* ========== SECCIÓN CONTACTO ========== */
@@ -991,6 +1194,11 @@ html {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
   .contacto-content {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1013,54 +1221,117 @@ html {
     flex-direction: column;
     max-height: none;
     min-height: 100vh;
+    padding: 0;
   }
   
-  .columna-izquierda, .columna-derecha {
+  .columna-izquierda {
     width: 100%;
+    padding: 40px 20px;
+    min-height: auto;
+  }
+  
+  .columna-derecha {
+    width: 100%;
+    padding: 40px 20px;
   }
   
   .foto-mia {
     position: static;
     transform: none;
     margin: 20px auto;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+  }
+  
+  .foto-mia img {
+    width: 100%;
+    height: 100%;
   }
   
   .columna-derecha h1,
   .splash-grafiti h1 {
-    font-size: 48px;
+    font-size: 36px !important;
+    text-align: center;
+    padding: 20px 10px;
+  }
+  
+  .textos-derecha {
+    padding: 20px;
+  }
+  
+  .textos-derecha h2 {
+    font-size: 20px !important;
+    text-align: center;
   }
   
   .parrafos-derecha {
     flex-direction: column;
+    gap: 20px;
+  }
+  
+  .parrafos-derecha p {
+    font-size: 16px !important;
+    text-align: center;
+  }
+  
+  /* Sección Me */
+  #me {
+    padding: 40px 20px;
+  }
+  
+  .me {
+    padding: 20px;
+  }
+  
+  .izquierdo.me {
+    padding: 30px 20px;
   }
   
   .izquierdo.me h1 {
-    font-size: 48px;
+    font-size: 42px;
+    text-align: center;
+  }
+  
+  .textos-izquierda {
+    gap: 20px;
   }
   
   .textos-izquierda p {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 20px;
+  }
+  
+  .cv-download-button {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    padding: 14px 28px;
+  }
+
+  /* Sección Experiencia */
+  #experiencia {
+    padding: 60px 20px;
   }
 
   .experiencia-container h2 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 40px;
-  }
-
-  .tecnologias-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    text-align: center;
     padding: 0 10px;
   }
 
+  .tecnologias-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+
   .tech-card {
-    padding: 30px 20px;
+    padding: 25px 20px;
   }
 
   .tech-icon {
-    font-size: 48px;
+    font-size: 42px;
   }
 
   .tech-card h3 {
@@ -1070,59 +1341,325 @@ html {
   .tech-card p {
     font-size: 14px;
   }
+  
+  /* Sección Proyectos */
+  #proyectos {
+    padding: 60px 20px;
+  }
+  
+  .proyectos-container h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .proyectos-subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .proyectos-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 10px;
+  }
+  
+  .project-image {
+    height: 220px;
+  }
+  
+  .project-content {
+    padding: 25px;
+  }
+  
+  .project-content h3 {
+    font-size: 22px;
+  }
+  
+  .project-content p {
+    font-size: 15px;
+  }
+  
+  /* Sección Contacto */
+  #contacto {
+    padding: 40px 20px;
+  }
 
   .contacto-header h2 {
-    font-size: 36px;
+    font-size: 32px;
+    text-align: center;
+    padding: 0 10px;
   }
   
   .contacto-subtitle {
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 10px;
   }
   
   .credibilidad-indicators {
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
   }
   
   .indicator {
     padding: 12px 20px;
+    font-size: 14px;
   }
   
   .formulario-section {
-    padding: 30px 20px;
+    padding: 25px 15px;
   }
   
   .form-header h3 {
-    font-size: 24px;
+    font-size: 22px;
+  }
+  
+  .form-header p {
+    font-size: 14px;
   }
   
   .cta-buttons {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .cta-button {
+    font-size: 14px;
+    padding: 12px 24px;
   }
   
   .form-row {
     grid-template-columns: 1fr;
   }
   
+  .disponibilidad-card {
+    padding: 20px;
+  }
+  
+  .disponibilidad-card h4 {
+    font-size: 18px;
+  }
+  
+  .info-item {
+    font-size: 13px;
+  }
+  
+  .enlaces-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .enlace-prof {
+    font-size: 14px;
+  }
+  
+  .valores-list {
+    gap: 12px;
+  }
+  
+  .valor-item {
+    font-size: 14px;
+  }
+  
+  .cta-final {
+    padding: 30px 20px;
+  }
+  
   .cta-final h3 {
     font-size: 24px;
+    text-align: center;
+  }
+  
+  .cta-final p {
+    font-size: 14px;
+    text-align: center;
   }
   
   .cta-urgente {
-    font-size: 18px;
-    padding: 15px 30px;
+    font-size: 16px;
+    padding: 14px 28px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Menu responsive */
+  .menu-desplegable {
+    min-width: 220px;
+  }
+  
+  .menu-desplegable a {
+    font-size: 1.5rem;
+    padding: 20px 0 20px 20px;
+  }
+  
+  /* Grafiti doodles - ajustar para móvil */
+  .grafiti-doodle {
+    width: 24px;
+    height: 24px;
   }
 }
 
 @media (max-width: 480px) {
+  .columna-derecha h1,
+  .splash-grafiti h1 {
+    font-size: 28px !important;
+  }
+  
+  .izquierdo.me h1 {
+    font-size: 36px;
+  }
+  
+  .textos-derecha h2 {
+    font-size: 18px !important;
+  }
+  
+  .parrafos-derecha p {
+    font-size: 14px !important;
+  }
+  
+  .foto-mia {
+    width: 200px;
+    height: 200px;
+  }
+  
   .tecnologias-grid {
     grid-template-columns: 1fr;
   }
 
   .experiencia-container h2 {
-    font-size: 28px;
+    font-size: 24px;
+    line-height: 1.3;
   }
 
   .tech-card {
-    padding: 25px 15px;
+    padding: 20px 15px;
+  }
+  
+  .tech-icon {
+    font-size: 36px;
+  }
+  
+  .tech-card h3 {
+    font-size: 18px;
+  }
+  
+  .proyectos-container h2 {
+    font-size: 28px;
+  }
+  
+  .proyectos-subtitle {
+    font-size: 16px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-content {
+    padding: 20px;
+  }
+  
+  .project-content h3 {
+    font-size: 20px;
+  }
+  
+  .project-content p {
+    font-size: 14px;
+  }
+  
+  .project-link {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .contacto-header h2 {
+    font-size: 26px;
+  }
+  
+  .contacto-subtitle {
+    font-size: 14px;
+  }
+  
+  .credibilidad-indicators {
+    flex-direction: column;
+  }
+  
+  .indicator {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  .cta-button {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+  
+  .form-header h3 {
+    font-size: 20px;
+  }
+  
+  .disponibilidad-card h4 {
+    font-size: 16px;
+  }
+  
+  .enlaces-profesionales h4,
+  .valor-profesional h4,
+  .testimonios-laborales h4 {
+    font-size: 16px;
+  }
+  
+  .cta-final h3 {
+    font-size: 20px;
+  }
+  
+  .menu-desplegable a {
+    font-size: 1.3rem;
+  }
+  
+  .cv-download-button {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+}
+
+/* Media query adicional para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .columna-izquierda,
+  .columna-derecha {
+    padding: 30px 15px;
+  }
+  
+  .foto-mia {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .splash-grafiti h1 {
+    font-size: 24px !important;
+  }
+  
+  .izquierdo.me h1 {
+    font-size: 32px;
+  }
+  
+  .experiencia-container h2 {
+    font-size: 20px;
+  }
+  
+  .proyectos-container h2 {
+    font-size: 24px;
+  }
+  
+  .proyectos-grid {
+    padding: 5px;
+  }
+  
+  .contacto-header h2 {
+    font-size: 22px;
+  }
+  
+  .formulario-section,
+  .info-profesional {
+    padding: 20px 10px;
   }
 }

@@ -39,6 +39,7 @@ function Menu() {
         <a href="#inicio" onClick={() => setMenuActivo(false)}>inicio</a>
         <a href="#me" onClick={() => setMenuActivo(false)}>me</a>
         <a href="#experiencia" onClick={() => setMenuActivo(false)}>Experiencia</a>
+        <a href="#proyectos" onClick={() => setMenuActivo(false)}>Proyectos</a>
         <a href="#contacto" onClick={() => setMenuActivo(false)}>contacto</a>
       </div>
     </div>
@@ -90,6 +91,16 @@ function Inicio() {
 
 // Sección Me
 function Me() {
+  const downloadCV = () => {
+    const link = document.createElement('a')
+    link.href = '/Cv Juan Luligo.pdf'
+    link.download = 'Juan_Luligo_CV.pdf'
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <section id="me">
       <div className="me">
@@ -101,6 +112,11 @@ function Me() {
             
             <p>Mi enfoque se centra en la calidad del código, la escalabilidad y la mantenibilidad, asegurando que cada proyecto no solo cumpla con los requisitos funcionales, 
               sino que también sea fácil de mantener y evolucionar a lo largo del tiempo.</p>
+            
+            <button className="cv-download-button" onClick={downloadCV}>
+              <i className="fas fa-download"></i>
+              Descargar CV
+            </button>
           </div>
         </div>
       </div>
@@ -178,6 +194,109 @@ function Experiencia() {
               description={tech.description}
               level={tech.level}
               delay={index * 0.1}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Componente ProjectCard
+function ProjectCard({ title, description, technologies, link, image, delay }) {
+  const [animated, setAnimated] = useState(false)
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => setAnimated(true), 300)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div 
+      className={`project-card ${animated ? 'animated' : ''}`} 
+      ref={cardRef} 
+      style={{ animationDelay: `${delay}s` }}
+    >
+      <div className="project-image">
+        <img src={image} alt={title} />
+        <div className="project-overlay">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="project-link">
+            <i className="fas fa-external-link-alt"></i>
+            Ver Proyecto
+          </a>
+        </div>
+      </div>
+      <div className="project-content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div className="project-tech">
+          {technologies.map((tech, index) => (
+            <span key={index} className="tech-tag">{tech}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Sección Proyectos
+function Proyectos() {
+  const proyectos = [
+    {
+      title: 'VozSegura',
+      description: 'Sistema de monitoreo y análisis de voz en tiempo real con inteligencia artificial. Detecta patrones de habla y proporciona retroalimentación instantánea.',
+      technologies: ['React', 'FullStack', 'JavaScript', 'MySQL'],
+      link: 'https://github.com/juanluligo/VozSegura',
+      image: '/VozSegura.png'
+    },
+    {
+      title: 'Tracking de Bugs',
+      description: 'Aplicación web para gestión y seguimiento de errores en proyectos de software. Permite crear, asignar y resolver bugs de manera eficiente.',
+      technologies: ['React', 'Node.js', 'Vercel', 'Database'],
+      link: 'https://tracking-de-bugs.vercel.app/',
+      image: '/bugs.png'
+    },
+    {
+      title: 'MiniArcade',
+      description: 'Colección interactiva de minijuegos clásicos creados con JavaScript vanilla. Experiencia nostálgica con diseño moderno y controles intuitivos.',
+      technologies: ['JavaScript', 'HTML5', 'CSS3', 'Canvas API'],
+      link: 'https://mini-arcade-eta.vercel.app/',
+      image: '/image.png'
+    }
+  ]
+
+  return (
+    <section id="proyectos">
+      <div className="proyectos-container">
+        <h2>Mis Proyectos Destacados</h2>
+        <p className="proyectos-subtitle">Estos son algunos de los proyectos en los que he trabajado</p>
+        
+        <div className="proyectos-grid">
+          {proyectos.map((proyecto, index) => (
+            <ProjectCard 
+              key={proyecto.title}
+              title={proyecto.title}
+              description={proyecto.description}
+              technologies={proyecto.technologies}
+              link={proyecto.link}
+              image={proyecto.image}
+              delay={index * 0.2}
             />
           ))}
         </div>
@@ -378,7 +497,7 @@ function ContactForm() {
 function Contacto() {
   const downloadCV = () => {
     const link = document.createElement('a')
-    link.href = '/cv.pdf'
+    link.href = '/Cv Juan Luligo.pdf'
     link.download = 'Juan_Luligo_CV.pdf'
     link.target = '_blank'
     document.body.appendChild(link)
@@ -548,8 +667,7 @@ function Contacto() {
                 <i className="fas fa-quote-left"></i>
                 <p>"Juan es un desarrollador excepcional. Su capacidad para resolver problemas complejos y su actitud colaborativa lo hacen invaluable para cualquier equipo."</p>
                 <div className="referencia-author">
-                  <strong>Ana Martínez</strong>
-                  <span>Tech Lead, InnovaTech</span>
+                  <span>VozSegura</span>
                 </div>
               </div>
             </div>
@@ -577,6 +695,7 @@ function App() {
       <Inicio />
       <Me />
       <Experiencia />
+      <Proyectos />
       <Contacto />
     </main>
   )
